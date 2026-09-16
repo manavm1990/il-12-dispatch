@@ -424,11 +424,14 @@ export type PAGINATED_POSTS_QUERY_RESULT = Array<{
 }>;
 
 // Query TypeMap
-import "@sanity/client";
-declare module "@sanity/client" {
+declare global {
   interface SanityQueries {
     '*[_type == "post" && defined(slug.current)]{\n  "slug": slug.current,\n  _updatedAt\n}': ALL_POST_SLUGS_RESULT;
     '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  dek,\n  postType,\n  body,\n  "excerpt": pt::text(body),\n  mainImage,\n  publishedAt,\n  issueLabel,\n  sources,\n  _updatedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': FIRST_POST_QUERY_RESULT;
     '*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  dek,\n  postType,\n  slug,\n  publishedAt,\n  issueLabel,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}': PAGINATED_POSTS_QUERY_RESULT;
   }
+}
+// Lets @sanity/client releases that predate the global registry read it too
+declare module "@sanity/client" {
+  interface SanityQueries extends globalThis.SanityQueries {}
 }

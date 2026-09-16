@@ -15,7 +15,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "!(sanity.types).{ts,tsx}": [
       "biome format --write",
       "biome check --no-errors-on-unmatched",
       "tsc-files --noEmit --pretty false --incremental false"
@@ -59,7 +59,7 @@
     "skills": "1.5.26",
     "tailwindcss": "^4.3.3",
     "tsc-files": "^1.1.4",
-    "typescript": "^5.9.3"
+    "typescript": "^7.0.2"
   },
   "ignoreScripts": [
     "sharp",
