@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "bun run typegen && bun run tsc --noEmit",
+    "prebuild": "bun run typegen && bun run typecheck",
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
     "test": "bun test",
+    "typecheck": "tsc --noEmit",
     "typegen": "bunx sanity@latest schema extract --force --enforce-required-fields --path=sanity/extract.json && bunx sanity@latest typegen generate",
     "skills:update": "skills update -y -p && rm -rf .claude",
     "prepare": "husky"
@@ -17,8 +18,7 @@
   "lint-staged": {
     "!(sanity.types).{ts,tsx}": [
       "biome format --write",
-      "biome check --no-errors-on-unmatched",
-      "tsc-files --noEmit --pretty false --incremental false"
+      "biome check --no-errors-on-unmatched"
     ]
   },
   "dependencies": {
@@ -58,7 +58,6 @@
     "@types/react-dom": "^19.3.0",
     "skills": "1.5.26",
     "tailwindcss": "^4.3.3",
-    "tsc-files": "^1.1.4",
     "typescript": "^7.0.2"
   },
   "ignoreScripts": [

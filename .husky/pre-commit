@@ -1,2 +1,2 @@
-echo "🏃 Running Biome & lint-staged..."
-bun run lint-staged
+echo "🏃 Running Biome via lint-staged..."
+bunx lint-staged
