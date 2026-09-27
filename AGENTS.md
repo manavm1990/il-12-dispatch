@@ -28,7 +28,7 @@ Sanity powered Next.js application. We are using Sanity's headless CMS to manage
 
 ## Agent Skills Map
 
-Project skills live only in `.agents/skills/` and are locked in `skills-lock.json`. Read the matching `SKILL.md` (and only needed `references/`) before domain work. Do not reinstall or broaden the skill set unless explicitly asked. To refresh locked skills (CLI version, `bunx skills update`), see [README.md](./README.md#agent-skills).
+Project skills live only in `.agents/skills/` and are locked in `skills-lock.json`. Read the matching `SKILL.md` (and only needed `references/`) before domain work. Do not reinstall or broaden the skill set unless explicitly asked. To refresh locked skills (global `skills` CLI), see [README.md](./README.md#agent-skills).
 
 | Skill | Use when |
 | --- | --- |
