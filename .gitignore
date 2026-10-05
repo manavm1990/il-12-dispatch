@@ -46,3 +46,6 @@ next-env.d.ts
 
 # sanity
 .sanity/
+
+# react-email HTML dumps for Resend (regenerate from emails/*.tsx)
+/emails/exports/
