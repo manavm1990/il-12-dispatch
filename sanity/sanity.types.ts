@@ -359,7 +359,7 @@ export type ALL_POST_SLUGS_RESULT = Array<{
 
 // Source: sanity/lib/queries.ts
 // Variable: FIRST_POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  dek,  postType,  body,  "excerpt": pt::text(body),  mainImage,  publishedAt,  issueLabel,  sources,  _updatedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  dek,  postType,  body,  "excerpt": pt::text(body),  mainImage,  publishedAt,  issueLabel,  sources,  _updatedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  "author": coalesce(    author->{      name,      image    },    *[_id == "author-the-dispatch"][0]{      name,      image    }  )}
 export type FIRST_POST_QUERY_RESULT = {
   _id: string;
   title: string;
@@ -391,16 +391,22 @@ export type FIRST_POST_QUERY_RESULT = {
         title: string;
       }>
     | Array<never>;
-  author: {
-    name: string;
-    image: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    } | null;
-  } | null;
+  author:
+    | {
+        name: null;
+        image: null;
+      }
+    | {
+        name: string;
+        image: {
+          asset?: SanityImageAssetReference;
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        } | null;
+      }
+    | null;
 } | null;
 
 // Source: sanity/lib/queries.ts
@@ -427,7 +433,7 @@ export type PAGINATED_POSTS_QUERY_RESULT = Array<{
 declare global {
   interface SanityQueries {
     '*[_type == "post" && defined(slug.current)]{\n  "slug": slug.current,\n  _updatedAt\n}': ALL_POST_SLUGS_RESULT;
-    '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  dek,\n  postType,\n  body,\n  "excerpt": pt::text(body),\n  mainImage,\n  publishedAt,\n  issueLabel,\n  sources,\n  _updatedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': FIRST_POST_QUERY_RESULT;
+    '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  dek,\n  postType,\n  body,\n  "excerpt": pt::text(body),\n  mainImage,\n  publishedAt,\n  issueLabel,\n  sources,\n  _updatedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  "author": coalesce(\n    author->{\n      name,\n      image\n    },\n    *[_id == "author-the-dispatch"][0]{\n      name,\n      image\n    }\n  )\n}': FIRST_POST_QUERY_RESULT;
     '*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  dek,\n  postType,\n  slug,\n  publishedAt,\n  issueLabel,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}': PAGINATED_POSTS_QUERY_RESULT;
   }
 }

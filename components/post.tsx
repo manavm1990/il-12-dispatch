@@ -3,11 +3,11 @@ import { PortableText } from "next-sanity";
 import { components } from "@/sanity/portable-text-components";
 import type { FIRST_POST_QUERY_RESULT } from "@/sanity/sanity.types";
 import Author from "./author";
-import Categories from "./categories";
+import PostKicker from "./post-kicker";
 import Published from "./published";
 import SanityImage from "./sanity-image";
 import SharePost from "./share-post.client";
-import { Eyebrow, H1, Lead, OpinionBadge, P } from "./typography";
+import { Eyebrow, H1, Lead, P } from "./typography";
 
 export default function Post({
   title,
@@ -29,10 +29,7 @@ export default function Post({
   return (
     <article className="mx-auto max-w-190">
       <header className="mb-8 border-b-2 border-heading pb-5">
-        <div className="flex items-center gap-2.5">
-          <Categories categories={categories} />
-          {postType === "editorial" ? <OpinionBadge /> : null}
-        </div>
+        <PostKicker categories={categories} postType={postType} />
         <H1 className="mt-3.5 text-3xl leading-[1.15] font-extrabold md:text-[38px]">
           {title}
         </H1>

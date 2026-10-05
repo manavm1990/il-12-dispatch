@@ -34,10 +34,16 @@ export const FIRST_POST_QUERY =
     },
     []
   ),
-  author->{
-    name,
-    image
-  }
+  "author": coalesce(
+    author->{
+      name,
+      image
+    },
+    *[_id == "author-the-dispatch"][0]{
+      name,
+      image
+    }
+  )
 }`);
 
 /** List card fields only — full body is reserved for the post detail query. */

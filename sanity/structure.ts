@@ -1,4 +1,8 @@
 import type { StructureResolver } from "sanity/structure";
+import {
+  GUEST_WRITER_AUTHOR_ID,
+  THE_DISPATCH_AUTHOR_ID,
+} from "./lib/constants";
 
 /**
  * Configures the Sanity Studio sidebar navigation structure.
@@ -20,6 +24,24 @@ export const structure: StructureResolver = (S) =>
       // Primary content types appear next for quick access
       S.documentTypeListItem("post").title("Posts"),
       S.documentTypeListItem("category").title("Categories"),
+      S.listItem()
+        .title("The Dispatch (desk byline)")
+        .id(THE_DISPATCH_AUTHOR_ID)
+        .child(
+          S.document()
+            .schemaType("author")
+            .documentId(THE_DISPATCH_AUTHOR_ID)
+            .title("The Dispatch"),
+        ),
+      S.listItem()
+        .title("Guest Writer")
+        .id(GUEST_WRITER_AUTHOR_ID)
+        .child(
+          S.document()
+            .schemaType("author")
+            .documentId(GUEST_WRITER_AUTHOR_ID)
+            .title("Guest Writer"),
+        ),
       S.documentTypeListItem("author").title("Authors"),
       S.divider(),
 

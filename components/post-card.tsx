@@ -1,8 +1,8 @@
 import Link from "next/link";
 import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
-import Categories from "./categories";
+import PostKicker from "./post-kicker";
 import Published from "./published";
-import { H1, H2, Lead, OpinionBadge } from "./typography";
+import { H1, H2, Lead } from "./typography";
 
 type PostCardProps = PAGINATED_POSTS_QUERY_RESULT[0] & {
   variant?: "lead" | "list";
@@ -24,10 +24,7 @@ export default function PostCard({
         href={`/posts/${slug?.current}`}
         className="mb-10 block border-b border-border pb-9"
       >
-        <div className="flex items-center gap-2.5">
-          <Categories categories={categories} />
-          {postType === "editorial" ? <OpinionBadge /> : null}
-        </div>
+        <PostKicker categories={categories} postType={postType} />
         <H1 className="mt-3.5 text-4xl leading-tight font-extrabold tracking-tight md:text-[44px]">
           {title}
         </H1>
@@ -52,10 +49,7 @@ export default function PostCard({
     >
       <article className="grid gap-3 md:grid-cols-[200px_1fr] md:gap-8">
         <div>
-          <div className="flex flex-wrap items-center gap-2">
-            <Categories categories={categories} />
-            {postType === "editorial" ? <OpinionBadge /> : null}
-          </div>
+          <PostKicker categories={categories} postType={postType} />
           <Published
             publishedAt={publishedAt}
             issueLabel={issueLabel}
