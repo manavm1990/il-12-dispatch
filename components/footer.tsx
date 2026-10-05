@@ -1,3 +1,4 @@
+import Link from "next/link";
 import FooterNewsletter from "@/components/footer-newsletter.client";
 import { EDITOR_EMAIL, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site-info";
 
@@ -13,6 +14,15 @@ export default function Footer() {
               {SITE_NAME}
             </p>
             <p className="text-xs">
+              <Link
+                className="underline decoration-slate-600 underline-offset-2 transition-colors hover:text-brand-tint hover:decoration-brand-tint"
+                href="/about"
+              >
+                About
+              </Link>
+              <span className="mx-2 text-slate-600" aria-hidden>
+                ·
+              </span>
               <a
                 className="underline decoration-slate-600 underline-offset-2 transition-colors hover:text-brand-tint hover:decoration-brand-tint"
                 href={`mailto:${EDITOR_EMAIL}`}

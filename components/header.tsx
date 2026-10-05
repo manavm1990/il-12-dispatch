@@ -6,6 +6,7 @@ import { DISTRICT_NAME, SITE_NAME, SITE_TAGLINE } from "@/lib/site-info";
 const navItems = [
   { href: "/", label: "Posts" },
   { href: "/editorials", label: "Editorials" },
+  { href: "/about", label: "About" },
   { href: "/subscribe", label: "Subscribe" },
 ] as const;
 
