@@ -48,7 +48,6 @@ const PREVIEW_DEFAULTS = {
   title: "Why the district needs a real town hall",
   intro:
     "Last month's closed-door briefing left more questions than answers. Constituents deserve an unscripted forum before the next vote.",
-  // Swap these for the real issue before copying HTML into Resend.
   ctaUrl: "https://il12dispatch.org/posts/your-slug",
   ctaLabel: "Read the full piece",
   issueLabel: "Issue No. 14",
