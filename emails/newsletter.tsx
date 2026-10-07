@@ -11,12 +11,40 @@ import {
   Section,
   Text,
 } from "@react-email/components";
+import type { ReactNode } from "react";
 import {
   EDITOR_EMAIL,
   SITE_NAME,
   SITE_POSTAL_ADDRESS,
   SITE_TAGLINE,
 } from "@/lib/site-info";
+
+const URL_IN_TEXT = /https?:\/\/[^\s)]+/g;
+
+/** Turn bare http(s) URLs in a note into clickable Resend-safe links. */
+function linkifyNote(note: string): ReactNode[] {
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+
+  for (const match of note.matchAll(URL_IN_TEXT)) {
+    if (match.index > lastIndex) nodes.push(note.slice(lastIndex, match.index));
+
+    const href = match[0];
+    // Strip a trailing period/comma that often sticks to pasted URLs.
+    const cleaned = href.replace(/[.,;:]+$/, "");
+    const trailing = href.slice(cleaned.length);
+    nodes.push(
+      <Link key={`${match.index}-${cleaned}`} href={cleaned} style={link}>
+        {cleaned.replace(/^https?:\/\//, "")}
+      </Link>,
+    );
+    if (trailing) nodes.push(trailing);
+    lastIndex = match.index + href.length;
+  }
+
+  if (lastIndex < note.length) nodes.push(note.slice(lastIndex));
+  return nodes.length ? nodes : [note];
+}
 
 export type NewsletterEmailProps = {
   /** Inbox preview + usually mirrors the subject line theme. */
@@ -30,7 +58,13 @@ export type NewsletterEmailProps = {
   ctaLabel?: string;
   /** e.g. "Issue No. 14" — shown under the masthead. */
   issueLabel?: string;
-  /** Optional second beat or bullets as plain lines. */
+  /**
+   * Optional second section (e.g. voting deadlines), separated from the
+   * lead piece so it doesn't read as a run-on.
+   */
+  secondaryKicker?: string;
+  secondaryTitle?: string;
+  /** Bullets under the secondary section (or under the lead if no secondary). */
   notes?: string[];
   siteUrl: string;
   /** CAN-SPAM / footer postal line when you have one. */
@@ -51,6 +85,8 @@ const PREVIEW_DEFAULTS = {
   ctaUrl: "https://il12dispatch.org/posts/your-slug",
   ctaLabel: "Read the full piece",
   issueLabel: "Issue No. 14",
+  secondaryKicker: "Voting",
+  secondaryTitle: "Early voting is open in Illinois",
   notes: [
     "What was promised vs what was delivered",
     "How to push for a public date on the calendar",
@@ -68,11 +104,15 @@ export default function NewsletterEmail({
   ctaUrl,
   ctaLabel = "Read the full piece",
   issueLabel,
+  secondaryKicker,
+  secondaryTitle,
   notes,
   siteUrl,
   postalAddress = SITE_POSTAL_ADDRESS || undefined,
   unsubscribeUrl = RESEND_UNSUBSCRIBE_MERGE_TAG,
 }: NewsletterEmailProps) {
+  const hasSecondary = Boolean(secondaryKicker || secondaryTitle);
+
   return (
     <Html lang="en">
       <Head />
@@ -89,11 +129,11 @@ export default function NewsletterEmail({
           <Heading style={heading}>{title}</Heading>
           <Text style={text}>{intro}</Text>
 
-          {notes?.length ? (
+          {!hasSecondary && notes?.length ? (
             <Section style={notesSection}>
               {notes.map((note) => (
                 <Text key={note} style={noteLine}>
-                  • {note}
+                  • {linkifyNote(note)}
                 </Text>
               ))}
             </Section>
@@ -111,6 +151,29 @@ export default function NewsletterEmail({
               {ctaUrl}
             </Link>
           </Text>
+
+          {hasSecondary ? (
+            <>
+              <Hr style={hr} />
+              {secondaryKicker ? (
+                <Text style={kickerStyle}>{secondaryKicker}</Text>
+              ) : null}
+              {secondaryTitle ? (
+                <Heading as="h2" style={subheading}>
+                  {secondaryTitle}
+                </Heading>
+              ) : null}
+              {notes?.length ? (
+                <Section style={notesSection}>
+                  {notes.map((note) => (
+                    <Text key={note} style={noteLine}>
+                      • {linkifyNote(note)}
+                    </Text>
+                  ))}
+                </Section>
+              ) : null}
+            </>
+          ) : null}
 
           <Hr style={hr} />
 
@@ -200,6 +263,14 @@ const heading = {
   margin: "0 0 16px",
 };
 
+const subheading = {
+  color: "#111111",
+  fontSize: "17px",
+  fontWeight: 800,
+  lineHeight: "1.35",
+  margin: "0 0 12px",
+};
+
 const text = {
   color: "#333333",
   fontSize: "15px",
@@ -223,11 +294,11 @@ const noteLine = {
   color: "#333333",
   fontSize: "14px",
   lineHeight: "1.45",
-  margin: "0 0 6px",
+  margin: "0 0 10px",
 };
 
 const ctaSection = {
-  margin: "20px 0 16px",
+  margin: "8px 0 16px",
 };
 
 const button = {
