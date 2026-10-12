@@ -1,11 +1,11 @@
 {
   "version": 1,
   "skills": {
-    "code-review-and-quality": {
-      "source": "addyosmani/agent-skills",
+    "code-review": {
+      "source": "mattpocock/skills",
       "sourceType": "github",
-      "skillPath": "skills/code-review-and-quality/SKILL.md",
-      "computedHash": "0667c7af98996c0bec4fb0eb444680bdbf1da1d6a3cfdf5dbe8cbd350d9d2752"
+      "skillPath": "skills/engineering/code-review/SKILL.md",
+      "computedHash": "57cfd4ceb011f05e58a1a4f4cad3b2e03419d371f8990f4bcb32ff0d435a039f"
     },
     "content-modeling-best-practices": {
       "source": "sanity-io/agent-toolkit",
@@ -25,12 +25,6 @@
       "skillPath": "skills/frontend-design/SKILL.md",
       "computedHash": "89496d5dd00f4810205f351759594fc2742bf8eea85a2f2b2d1de59f4bd91576"
     },
-    "frontend-ui-engineering": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "skillPath": "skills/frontend-ui-engineering/SKILL.md",
-      "computedHash": "caada020b47fb51c68ba91f9bf390745e18f9d6c17e4c251b046ba74e43343d7"
-    },
     "lte-writing": {
       "source": "./local",
       "sourceType": "local",
@@ -41,7 +35,7 @@
       "source": "sanity-io/agent-toolkit",
       "sourceType": "github",
       "skillPath": "skills/sanity-best-practices/SKILL.md",
-      "computedHash": "c2d7c02f61cf060ac77a8eb4d99154d560dff3dec14a1d8da6d5a1f699fbd9c7"
+      "computedHash": "1462e9fc9dd04e1bc7296c3aa3e836749f9b62408c7acf3632a7e996afecd538"
     },
     "seo-aeo-best-practices": {
       "source": "sanity-io/agent-toolkit",

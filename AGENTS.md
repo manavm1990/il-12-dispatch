@@ -35,12 +35,11 @@ Project skills live only in `.agents/skills/` and are locked in `skills-lock.jso
 | `sanity-best-practices` | Schemas (`defineType` / `defineField`), GROQ / `defineQuery`, TypeGen, Portable Text, images, Studio structure, Visual Editing, Sanity + Next.js |
 | `content-modeling-best-practices` | Content architecture, field shapes, references vs embedded objects, taxonomies, avoiding page-shaped schemas |
 | `seo-aeo-best-practices` | Page/metadata SEO, Open Graph, sitemaps, `robots.txt`, JSON-LD, EEAT, AI-answer (AEO) readiness |
-| `frontend-ui-engineering` | Building or changing user-facing UI, layouts, accessibility, component state |
 | `frontend-design` | New or reshaped visual design, typography, distinctive aesthetic direction |
 | `vercel-composition-patterns` | Compound components, boolean-prop cleanup, flexible component APIs, React 19 composition |
 | `vercel-react-best-practices` | React/Next performance: waterfalls, bundle size, RSC boundaries, re-render and data-fetch patterns |
 | `web-design-guidelines` | UI/UX accessibility or interface-guideline audits |
-| `code-review-and-quality` | Before merge; multi-axis review of agent or human changes |
+| `code-review` | Before merge; standards + spec review of agent or human changes |
 | `lte-writing` | Drafting letters to the editor / accountability journalism LTEs |
 | `find-skills` | Discovering installable skills when a capability seems missing |
 
@@ -49,8 +48,8 @@ Project skills live only in `.agents/skills/` and are locked in `skills-lock.jso
 - Prefer the single most specific skill first; load a second only when the task truly crosses domains.
 - Sanity schema/Studio/GROQ/TypeGen → `sanity-best-practices`. Content model design debates → also `content-modeling-best-practices`.
 - Public page SEO/metadata/structured data → `seo-aeo-best-practices`. CMS-driven metadata field work → pair with `sanity-best-practices`.
-- UI implementation → `frontend-ui-engineering`; visual direction → `frontend-design`; component API shape → `vercel-composition-patterns`; React/Next performance → `vercel-react-best-practices`.
-- Finish non-trivial changes with `code-review-and-quality` before calling the work done.
+- UI/visual direction → `frontend-design`; component API shape → `vercel-composition-patterns`; React/Next performance → `vercel-react-best-practices`; UI/UX audits → `web-design-guidelines`.
+- Finish non-trivial changes with `code-review` before calling the work done.
 
 ## Sanity Workflow
 
