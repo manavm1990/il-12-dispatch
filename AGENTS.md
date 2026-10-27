@@ -30,18 +30,18 @@ Sanity powered Next.js application. We are using Sanity's headless CMS to manage
 
 Project skills live only in `.agents/skills/` and are locked in `skills-lock.json`. Read the matching `SKILL.md` (and only needed `references/`) before domain work. Do not reinstall or broaden the skill set unless explicitly asked. To refresh locked skills (global `skills` CLI), see [README.md](./README.md#agent-skills).
 
-| Skill | Use when |
-| --- | --- |
-| `sanity-best-practices` | Schemas (`defineType` / `defineField`), GROQ / `defineQuery`, TypeGen, Portable Text, images, Studio structure, Visual Editing, Sanity + Next.js |
-| `content-modeling-best-practices` | Content architecture, field shapes, references vs embedded objects, taxonomies, avoiding page-shaped schemas |
-| `seo-aeo-best-practices` | Page/metadata SEO, Open Graph, sitemaps, `robots.txt`, JSON-LD, EEAT, AI-answer (AEO) readiness |
-| `frontend-design` | New or reshaped visual design, typography, distinctive aesthetic direction |
-| `vercel-composition-patterns` | Compound components, boolean-prop cleanup, flexible component APIs, React 19 composition |
-| `vercel-react-best-practices` | React/Next performance: waterfalls, bundle size, RSC boundaries, re-render and data-fetch patterns |
-| `web-design-guidelines` | UI/UX accessibility or interface-guideline audits |
-| `code-review` | Before merge; standards + spec review of agent or human changes |
-| `lte-writing` | Drafting letters to the editor / accountability journalism LTEs |
-| `find-skills` | Discovering installable skills when a capability seems missing |
+| Skill                             | Use when                                                                                                                                         |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `sanity-best-practices`           | Schemas (`defineType` / `defineField`), GROQ / `defineQuery`, TypeGen, Portable Text, images, Studio structure, Visual Editing, Sanity + Next.js |
+| `content-modeling-best-practices` | Content architecture, field shapes, references vs embedded objects, taxonomies, avoiding page-shaped schemas                                     |
+| `seo-aeo-best-practices`          | Page/metadata SEO, Open Graph, sitemaps, `robots.txt`, JSON-LD, EEAT, AI-answer (AEO) readiness                                                  |
+| `frontend-design`                 | New or reshaped visual design, typography, distinctive aesthetic direction                                                                       |
+| `vercel-composition-patterns`     | Compound components, boolean-prop cleanup, flexible component APIs, React 19 composition                                                         |
+| `vercel-react-best-practices`     | React/Next performance: waterfalls, bundle size, RSC boundaries, re-render and data-fetch patterns                                               |
+| `web-design-guidelines`           | UI/UX accessibility or interface-guideline audits                                                                                                |
+| `code-review`                     | Before merge; standards + spec review of agent or human changes                                                                                  |
+| `lte-writing`                     | Drafting letters to the editor / accountability journalism LTEs                                                                                  |
+| `find-skills`                     | Discovering installable skills when a capability seems missing                                                                                   |
 
 ### Routing rules
 
