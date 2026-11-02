@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
 import { cn } from "@/lib/utils";
-import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 
 type PublishedProps = {
-  publishedAt: NonNullable<PAGINATED_POSTS_QUERY_RESULT>[number]["publishedAt"];
-  issueLabel?: NonNullable<PAGINATED_POSTS_QUERY_RESULT>[number]["issueLabel"];
+  // Detail query still allows null; list query filters to defined(publishedAt).
+  publishedAt: string | null;
+  issueLabel?: string | null;
   className?: string;
 };
 

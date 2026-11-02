@@ -351,7 +351,7 @@ export type AllSanitySchemaTypes =
 
 // Source: sanity/lib/queries.ts
 // Variable: ALL_POST_SLUGS
-// Query: *[_type == "post" && defined(slug.current)]{  "slug": slug.current,  _updatedAt}
+// Query: *[_type == "post" && defined(slug.current) && defined(publishedAt)]{  "slug": slug.current,  _updatedAt}
 export type ALL_POST_SLUGS_RESULT = Array<{
   slug: string;
   _updatedAt: string;
@@ -411,14 +411,14 @@ export type FIRST_POST_QUERY_RESULT = {
 
 // Source: sanity/lib/queries.ts
 // Variable: PAGINATED_POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  dek,  postType,  slug,  publishedAt,  issueLabel,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
+// Query: *[_type == "post" && defined(slug.current) && defined(publishedAt)]|order(publishedAt desc)[0...12]{  _id,  title,  dek,  postType,  slug,  publishedAt,  issueLabel,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
 export type PAGINATED_POSTS_QUERY_RESULT = Array<{
   _id: string;
   title: string;
   dek: string | null;
   postType: "dispatch" | "editorial";
   slug: Slug;
-  publishedAt: string | null;
+  publishedAt: string;
   issueLabel: string | null;
   categories:
     | Array<{
@@ -432,9 +432,9 @@ export type PAGINATED_POSTS_QUERY_RESULT = Array<{
 // Query TypeMap
 declare global {
   interface SanityQueries {
-    '*[_type == "post" && defined(slug.current)]{\n  "slug": slug.current,\n  _updatedAt\n}': ALL_POST_SLUGS_RESULT;
+    '*[_type == "post" && defined(slug.current) && defined(publishedAt)]{\n  "slug": slug.current,\n  _updatedAt\n}': ALL_POST_SLUGS_RESULT;
     '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  dek,\n  postType,\n  body,\n  "excerpt": pt::text(body),\n  mainImage,\n  publishedAt,\n  issueLabel,\n  sources,\n  _updatedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  "author": coalesce(\n    author->{\n      name,\n      image\n    },\n    *[_id == "author-the-dispatch"][0]{\n      name,\n      image\n    }\n  )\n}': FIRST_POST_QUERY_RESULT;
-    '*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  dek,\n  postType,\n  slug,\n  publishedAt,\n  issueLabel,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}': PAGINATED_POSTS_QUERY_RESULT;
+    '*[_type == "post" && defined(slug.current) && defined(publishedAt)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  dek,\n  postType,\n  slug,\n  publishedAt,\n  issueLabel,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}': PAGINATED_POSTS_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

@@ -8,7 +8,7 @@ const POSTS_PER_PAGE = 12;
  */
 
 export const ALL_POST_SLUGS =
-  defineQuery(`*[_type == "post" && defined(slug.current)]{
+  defineQuery(`*[_type == "post" && defined(slug.current) && defined(publishedAt)]{
   "slug": slug.current,
   _updatedAt
 }`);
@@ -48,7 +48,7 @@ export const FIRST_POST_QUERY =
 
 /** List card fields only — full body is reserved for the post detail query. */
 export const PAGINATED_POSTS_QUERY =
-  defineQuery(`*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...${POSTS_PER_PAGE}]{
+  defineQuery(`*[_type == "post" && defined(slug.current) && defined(publishedAt)]|order(publishedAt desc)[0...${POSTS_PER_PAGE}]{
   _id,
   title,
   dek,
