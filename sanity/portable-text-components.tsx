@@ -6,6 +6,7 @@ import {
   PullQuote,
   SectionHeading,
 } from "@/components/typography";
+import { imageDimensions } from "@/sanity/lib/image-dimensions";
 
 type BoxItem = { label?: string | null; text: string };
 
@@ -32,18 +33,35 @@ export const components: PortableTextComponents = {
     ),
   },
   types: {
-    image: (props) =>
-      props.value ? (
-        <SanityImage
-          // not-prose prevents Tailwind Typography from overriding image styles
-          className="rounded-lg not-prose w-full h-auto"
-          image={props.value}
-          alt={props.value.alt || ""}
-          width={500}
-          height={664}
-          quality={80}
-        />
-      ) : null,
+    image: ({ value }) => {
+      if (!value) return null;
+
+      // Keep the asset's own aspect ratio so maps and charts aren't cropped.
+      const dimensions = imageDimensions(value.asset?._ref);
+      const width = 760;
+      const height = dimensions
+        ? Math.round((width * dimensions.height) / dimensions.width)
+        : 664;
+
+      return (
+        <figure className="not-prose my-8">
+          <SanityImage
+            className="h-auto w-full rounded-lg"
+            image={value}
+            alt={value.alt || ""}
+            width={width}
+            height={height}
+            sizes="(max-width: 768px) 100vw, 760px"
+            quality={80}
+          />
+          {value.caption ? (
+            <figcaption className="mt-2 text-[13px] leading-snug text-muted">
+              {value.caption}
+            </figcaption>
+          ) : null}
+        </figure>
+      );
+    },
     actionBox: ({ value }) => {
       if (!value?.items?.length) return null;
 

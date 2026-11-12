@@ -3,6 +3,7 @@ import { PortableText } from "next-sanity";
 import { components } from "@/sanity/portable-text-components";
 import type { FIRST_POST_QUERY_RESULT } from "@/sanity/sanity.types";
 import Author from "./author";
+import AuthorBio from "./author-bio";
 import PostKicker from "./post-kicker";
 import Published from "./published";
 import SanityImage from "./sanity-image";
@@ -82,6 +83,8 @@ export default function Post({
           <PortableText value={body} components={components} />
         </section>
       ) : null}
+
+      <AuthorBio author={author} />
 
       {sources?.length ? (
         <footer className="mt-12 border-t border-border pt-5">

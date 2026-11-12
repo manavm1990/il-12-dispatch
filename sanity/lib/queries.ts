@@ -37,11 +37,13 @@ export const FIRST_POST_QUERY =
   "author": coalesce(
     author->{
       name,
-      image
+      image,
+      bio
     },
     *[_id == "author-the-dispatch"][0]{
       name,
-      image
+      image,
+      bio
     }
   )
 }`);

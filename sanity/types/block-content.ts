@@ -76,6 +76,12 @@ export const blockContentType = defineType({
           type: "string",
           title: "Alternative Text",
         },
+        {
+          name: "caption",
+          type: "string",
+          title: "Caption",
+          description: "Shown under the image, e.g. a source credit.",
+        },
       ],
     }),
     defineArrayMember({ type: actionBoxType.name }),
