@@ -33,3 +33,4 @@ skills add <source> --skill <name> -a universal -y -p
 ```
 
 Do not add or remove skills unless the team agrees — keep the set limited to what `skills-lock.json` already tracks.
+Prefer stack/domain skills for this app (Sanity, Next/React, frontend, LTE) over universal/meta skills.

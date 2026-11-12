@@ -28,7 +28,7 @@ Sanity powered Next.js application. We are using Sanity's headless CMS to manage
 
 ## Agent Skills Map
 
-Project skills live only in `.agents/skills/` and are locked in `skills-lock.json`. Read the matching `SKILL.md` (and only needed `references/`) before domain work. Do not reinstall or broaden the skill set unless explicitly asked. To refresh locked skills (global `skills` CLI), see [README.md](./README.md#agent-skills).
+Project skills live only in `.agents/skills/` and are locked in `skills-lock.json`. Prefer skills tied to this stack or domain (Sanity, Next/React, frontend, LTE); skip universal/meta skills (`find-skills`, generic code-review, etc.). Read the matching `SKILL.md` (and only needed `references/`) before domain work. Do not reinstall or broaden the skill set unless explicitly asked. To refresh locked skills (global `skills` CLI), see [README.md](./README.md#agent-skills).
 
 | Skill                             | Use when                                                                                                                                         |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -39,9 +39,7 @@ Project skills live only in `.agents/skills/` and are locked in `skills-lock.jso
 | `vercel-composition-patterns`     | Compound components, boolean-prop cleanup, flexible component APIs, React 19 composition                                                         |
 | `vercel-react-best-practices`     | React/Next performance: waterfalls, bundle size, RSC boundaries, re-render and data-fetch patterns                                               |
 | `web-design-guidelines`           | UI/UX accessibility or interface-guideline audits                                                                                                |
-| `code-review`                     | Before merge; standards + spec review of agent or human changes                                                                                  |
 | `lte-writing`                     | Drafting letters to the editor / accountability journalism LTEs                                                                                  |
-| `find-skills`                     | Discovering installable skills when a capability seems missing                                                                                   |
 
 ### Routing rules
 
@@ -49,7 +47,6 @@ Project skills live only in `.agents/skills/` and are locked in `skills-lock.jso
 - Sanity schema/Studio/GROQ/TypeGen → `sanity-best-practices`. Content model design debates → also `content-modeling-best-practices`.
 - Public page SEO/metadata/structured data → `seo-aeo-best-practices`. CMS-driven metadata field work → pair with `sanity-best-practices`.
 - UI/visual direction → `frontend-design`; component API shape → `vercel-composition-patterns`; React/Next performance → `vercel-react-best-practices`; UI/UX audits → `web-design-guidelines`.
-- Finish non-trivial changes with `code-review` before calling the work done.
 
 ## Sanity Workflow
 

@@ -12,6 +12,7 @@
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "typegen": "bunx sanity@latest schema extract --force --enforce-required-fields --path=sanity/extract.json && bunx sanity@latest typegen generate",
+    "postinstall": "bunx skills update -p -y || true",
     "prepare": "husky"
   },
   "lint-staged": {
