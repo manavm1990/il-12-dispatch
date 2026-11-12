@@ -124,7 +124,7 @@ export type BlockContent = Array<
         _key: string;
       }>;
       style?: "normal" | "h2" | "blockquote";
-      listItem?: "bullet";
+      listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
         _type: "link";

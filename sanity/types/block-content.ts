@@ -33,7 +33,10 @@ export const blockContentType = defineType({
         { title: "Section Heading", value: "h2" },
         { title: "Quote", value: "blockquote" },
       ],
-      lists: [{ title: "Bullet", value: "bullet" }],
+      lists: [
+        { title: "Bullet", value: "bullet" },
+        { title: "Numbered", value: "number" },
+      ],
       marks: {
         decorators: [
           { title: "Strong", value: "strong" },
