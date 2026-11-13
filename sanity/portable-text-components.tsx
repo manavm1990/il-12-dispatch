@@ -44,18 +44,21 @@ export const components: PortableTextComponents = {
         : 664;
 
       return (
-        <figure className="not-prose my-8">
+        // w-fit shrink-wraps the figure to the image so the caption lines up with it.
+        <figure className="not-prose mx-auto my-8 grid w-fit max-w-full">
           <SanityImage
-            className="h-auto w-full rounded-lg"
+            // The height cap keeps tall images (maps) from filling the screen.
+            className="h-auto max-h-[70vh] w-auto max-w-full rounded-lg border border-border"
             image={value}
             alt={value.alt || ""}
             width={width}
             height={height}
-            sizes="(max-width: 768px) 100vw, 760px"
+            sizes="(max-width: 640px) 100vw, 480px"
             quality={80}
           />
           {value.caption ? (
-            <figcaption className="mt-2 text-[13px] leading-snug text-muted">
+            // w-0 + min-w-full: the caption wraps to the image width instead of widening the figure.
+            <figcaption className="mt-2 w-0 min-w-full text-[13px] leading-snug text-muted">
               {value.caption}
             </figcaption>
           ) : null}
